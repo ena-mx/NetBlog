@@ -1,45 +1,197 @@
 ﻿@page
 @model NetBlog.WebApplication.Pages.Blog.IndexModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = @Resources.BlogModelResources.Title;
 }
 
 <div class="auto cell grid-y">
-    <div class="shrink cell app-border-bottom" style="background-color: #283e4a;">
-        <h1 class="text-center" style="color: white;"><img style="border: 2px solid #fff; box-shadow: inset 0 1.5px 3px 0 rgba(0,0,0,.15), 0 1.5px 3px 0 rgba(0,0,0,.15);border-radius: 49.9%;width: 72px;
-    height: 72px;
-    box-sizing: border-box;
-    background-clip: content-box;"
-                                     src="https://media.licdn.com/dms/image/C4E03AQHg_lZmbQ1QHg/profile-displayphoto-shrink_200_200/0?e=1553731200&v=beta&t=U8dpBPonk85Tt_jY5D8Yb8Nzw6CzujAgwaSZf34x2MU" />&nbsp;Blog</h1>
+    
+    @await  Component.InvokeAsync("Profile")
+
+    @if (Model.Blogs.Items != null && Model.Blogs.Items.Any())
+    {
+        <div class="auto cell grid-y app-overflow-y-auto">
+            <div class="auto cell grid-container">
+                <ul class="no-bullet">
+                    @for (int i = 0; i < Model.Blogs.Items.Length; i++)
+                    {
+                        <li class="padding-vertical-1">
+                            <h3><a asp-page="/Blog/Archives" asp-route-id="@Model.Blogs.Items[i].UriKey">@Model.Blogs.Items[i].Title</a></h3>
+                            <h6 class="subheader margin-0">@Model.Blogs.Items[i].CreatedDate.ToString("dd-MMMM-yyyy")<span class="primary label margin-left-1">@Model.Blogs.Items[i].Keyword</span><span class="font-italic margin-left-1">@Model.Blogs.Items[i].MinutesToRead&nbsp;@Resources.BlogModelResources.MinutesToRead</span></h6>
+                            <p class="margin-0">@Model.Blogs.Items[i].TextIntro</p>
+                            <a asp-page="/Blog/Archives" asp-route-id="@Model.Blogs.Items[i].UriKey">@Resources.BlogModelResources.ContinueReading</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="auto cell grid-y align-center">
+            <div class="shrink cell grid-x align-center">
+                <h6>@Resources.BlogModelResources.PageWithNoItems</h6>
+            </div>
+        </div>
+    }
+
+    <div class="shrink cell grid-x bordered">
+        <div class="auto cell grid-x">
+            <div class="auto cell grid-x align-left padding-top-1">
+                <div class="grid-y align-center">
+                    <nav aria-label="Pagination">
+                        <ul class="pagination" role="navigation" aria-label="Pagination">
+                            @if (Model.Blogs.HasPreviousPage)
+                            {
+                                <li class="pagination-previous app-cursor-pointer">
+                                    <a asp-page="./Index"
+                                       asp-route-pageIndex="@(Model.Blogs.PageInfo.PageNumber - 1)"
+                                       asp-route-pageLimit="@(Model.Limit)"
+                                       aria-label="@Resources.GridResources.Grid_PreviousPageLabel">@Resources.GridResources.Grid_PreviousPageLabel</a>
+                                </li>
+                                <li>
+                                    <a asp-page="./Index"
+                                       asp-route-pageIndex="1"
+                                       asp-route-pageLimit="@(Model.Limit)"
+                                       aria-label="@Resources.GridResources.Grid_FirstPageLabel">1</a>
+                                </li>
+                                <li class="ellipsis" aria-hidden="true"></li>
+                            }
+                            else
+                            {
+                                <li class="pagination-previous disabled">@Resources.GridResources.Grid_PreviousPageLabel&nbsp;<span class="show-for-sr">@Resources.GridResources.Grid_PreviousPageLabel</span></li>
+                            }
+                            <li class="current"><span class="show-for-sr">@Resources.GridResources.Grid_YouAreOnPageLabel @Model.Blogs.PageInfo.PageNumber</span>@Model.Blogs.PageInfo.PageNumber</li>
+                            @{
+                                var pageNumber = Model.Blogs.PageInfo.PageNumber + 1;
+                                var displayPageCount = Model.Blogs.PageInfo.PageNumber + 3;
+                                var lastDisplayPageNumber = displayPageCount;
+
+                                if (Model.Blogs.HasNextPage)
+                                {
+                                    while (pageNumber <= displayPageCount)
+                                    {
+                                        if (pageNumber <= Model.Blogs.PageInfo.TotalPages)
+                                        {
+                                            <li>
+                                                <a asp-page="./Index"
+                                                   asp-route-pageIndex="@(pageNumber)"
+                                                   asp-route-pageLimit="@(Model.Limit)"
+                                                   aria-label="@Resources.GridResources.Grid_PageLabel @(pageNumber)">@(pageNumber)</a>
+                                            </li>
+                                            pageNumber++;
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            @if (Model.Blogs.PageInfo.TotalPages > displayPageCount)
+                            {
+                                pageNumber = Model.Blogs.PageInfo.TotalPages - 3;
+                                displayPageCount = Model.Blogs.PageInfo.TotalPages - 1;
+                                <li class="ellipsis" aria-hidden="true"></li>
+                                while (pageNumber <= displayPageCount)
+                                {
+                                    if (pageNumber > lastDisplayPageNumber)
+                                    {
+                                        <li>
+                                            <a asp-page="./Index"
+                                               asp-route-pageIndex="@(pageNumber)"
+                                               asp-route-pageLimit="@(Model.Limit)"
+                                               aria-label="@Resources.GridResources.Grid_PageLabel @(pageNumber)">@(pageNumber)</a>
+                                        </li>
+                                        pageNumber++;
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                <li>
+                                    <a asp-page="./Index"
+                                       asp-route-pageIndex="@Model.Blogs.PageInfo.TotalPages"
+                                       asp-route-pageLimit="@(Model.Limit)"
+                                       aria-label="@Resources.GridResources.Grid_PageLabel @Model.Blogs.PageInfo.TotalPages">@Model.Blogs.PageInfo.TotalPages</a>
+                                </li>
+                            }
+                            @if (Model.Blogs.HasNextPage)
+                            {
+                                <li class="pagination-next">
+                                    <a asp-page="./Index"
+                                       asp-route-pageIndex="@(Model.Blogs.PageInfo.PageNumber + 1)"
+                                       asp-route-pageLimit="@(Model.Limit)"
+                                       aria-label="@Resources.GridResources.Grid_NextPageLabel">@Resources.GridResources.Grid_NextPageLabel</a>
+                                </li>
+
+                            }
+                            else
+                            {
+                                <li class="pagination-next disabled">@Resources.GridResources.Grid_NextPageLabel&nbsp;<span class="show-for-sr">@Resources.GridResources.Grid_NextPageLabel</span></li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="shrink cell grid-x align-right show-for-large">
+                <div class="shrink cell grid-y align-center padding-top-1 padding-bottom-1 padding-left-1">@Resources.GridResources.Grid_PageLabel @Model.Blogs.PageInfo.PageNumber @Resources.GridResources.Grid_PageNumberOfLabel @Model.Blogs.PageInfo.TotalPages.</div>
+                <div class="shrink cell grid-y align-center padding-top-1 padding-bottom-1 padding-left-1">@Resources.GridResources.Grid_DisplayingLabel @(Model.Offset + Model.Blogs.PageInfo.PageSize) @Resources.GridResources.Grid_PageNumberOfLabel @Model.Blogs.PageInfo.TotalItems @Resources.GridResources.Grid_RowsLabel</div>
+                <div class="shrink cell grid-y align-center padding-horizontal-1">
+                    <select id="limitSelect" class="margin-0" asp-items="Model.PageLimitItems"></select>
+                    <div style="display:none;">
+                        @if (Model.Limit != 10)
+                        {
+                            <a asp-page="./Index"
+                               asp-route-pageIndex="1"
+                               asp-route-pageLimit="10"
+                               id="limit10"
+                               aria-label="@Resources.GridResources.Grid_TenRows">@Resources.GridResources.Grid_TenRows</a>
+                        }
+                        @if (Model.Limit != 20)
+                        {
+                            <a asp-page="./Index"
+                               asp-route-pageIndex="1"
+                               asp-route-pageLimit="20"
+                               id="limit20"
+                               aria-label="@Resources.GridResources.Grid_TenRows">@Resources.GridResources.Grid_TwentyRows</a>
+                        }
+                        @if (Model.Limit != 30)
+                        {
+                            <a asp-page="./Index"
+                               asp-route-pageIndex="1"
+                               asp-route-pageLimit="30"
+                               id="limit30"
+                               aria-label="@Resources.GridResources.Grid_TenRows">@Resources.GridResources.Grid_ThirtyRows</a>
+                        }
+                        @if (Model.Limit != 40)
+                        {
+                            <a asp-page="./Index"
+                               asp-route-pageIndex="1"
+                               asp-route-pageLimit="50"
+                               id="limit50"
+                               aria-label="@Resources.GridResources.Grid_TenRows">@Resources.GridResources.Grid_FiftyRows</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="auto cell grid-container app-overflow-y-auto">
-        <ul class="no-bullet">
-            @for (int i = 0; i < 20; i++)
-            {
-                <li class="padding-vertical-1">
-                    <h3><a asp-page="/Blog/Archives" asp-route-id="hello-from-database-@i">10x Paychecks for 10x Programmers</a></h3>
-                    <h6 class="subheader margin-0">22 de enero 2018 765 palabras 3 minutos por leer</h6>
-                    <p class="margin-0">You most probably know what I think about the architect role on a software project—it’s that of a dictator who makes all technical decisions and who bears the entire responsibility for the final result. I wrote about it and even gave a talk Who is a Software Architect? at BuildStuff in 2016. However, the obvious question you may ask is: What happens if the architect is wrong? Does it mean the entire project is at risk of failure? And isn’t it better to make the whole team responsible for the result, instead of having one single point of failure?</p>
-                    <a asp-page="/Blog/Archives" asp-route-id="hello-from-database-@i">Continuar leyendo</a>
-                </li>
-            }
-        </ul>
-    </div>
-    <div class="shrink cell grid-container">
-        <nav aria-label="Pagination">
-            <ul class="pagination">
-                <li class="pagination-previous disabled">Previous <span class="show-for-sr">page</span></li>
-                <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
-                <li><a href="#" aria-label="Page 2">2</a></li>
-                <li><a href="#" aria-label="Page 3">3</a></li>
-                <li><a href="#" aria-label="Page 4">4</a></li>
-                <li class="ellipsis" aria-hidden="true"></li>
-                <li><a href="#" aria-label="Page 12">12</a></li>
-                <li><a href="#" aria-label="Page 13">13</a></li>
-                <li class="pagination-next"><a href="#" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
-            </ul>
-        </nav>
-    </div>
+
 </div>
 
-
+@section Scripts
+    {
+    <script type="text/javascript">
+        (function () {
+            $('#limitSelect').on('change', function () {
+                var val = $(this).val();
+                var selector = document.getElementById('limit' + val);
+                if (selector) {
+                    selector.click();
+                }
+            });
+        })();
+    </script>
+}

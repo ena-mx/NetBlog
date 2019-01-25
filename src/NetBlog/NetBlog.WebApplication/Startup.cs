@@ -11,6 +11,8 @@ namespace NetBlog.WebApplication
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using NetBlog.Queries.Blogging;
+    using NetBlog.Queries.Sql.Blogging;
 
     public class Startup
     {
@@ -33,6 +35,7 @@ namespace NetBlog.WebApplication
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddScoped<BlogEntryQueryComponent, SqlBlogEntryQueryComponent>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
