@@ -13,4 +13,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetBlog.Domain.Sql\NetBlog.Domain.Sql.csproj" />
+    <ProjectReference Include="..\NetBlog.Queries.Sql\NetBlog.Queries.Sql.csproj" />
+  </ItemGroup>
+
 </Project>
