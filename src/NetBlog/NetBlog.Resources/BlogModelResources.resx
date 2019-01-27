@@ -118,15 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ContinueReading" xml:space="preserve">
-    <value>Continuar Leyendo</value>
+    <value>Continue reading</value>
+  </data>
+  <data name="HeaderTitle" xml:space="preserve">
+    <value>Blog archives</value>
   </data>
   <data name="MinutesToRead" xml:space="preserve">
-    <value>minutos de lectura</value>
+    <value>minute(s) to read</value>
   </data>
   <data name="PageWithNoItems" xml:space="preserve">
-    <value>No hay registros en la pagina actual</value>
+    <value>No records in current page</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Listado de blogs</value>
+    <value>Blog list</value>
   </data>
 </root>

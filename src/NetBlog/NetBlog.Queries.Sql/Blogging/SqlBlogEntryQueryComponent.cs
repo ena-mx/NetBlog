@@ -23,7 +23,7 @@
                _cmdTxtCustomer,
                new SqlParameter[]
                {
-                    new SqlParameter("@uriKey", System.Data.SqlDbType.UniqueIdentifier)
+                    new SqlParameter("@uriKey", System.Data.SqlDbType.VarChar)
                     {
                         Value = uriKey
                     }
