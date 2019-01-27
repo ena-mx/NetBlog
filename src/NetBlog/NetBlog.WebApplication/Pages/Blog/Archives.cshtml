@@ -1,8 +1,18 @@
 ﻿@page "{id}"
 @model NetBlog.WebApplication.Pages.Blog.ArchivesModel
 @{
-    ViewData["Title"] = "Archives";
+    ViewData["Title"] = Model.Blog.Title;
 }
 
-<h1>Archives @Model.Id</h1>
+<div class="auto cell grid-y">
+    @await Component.InvokeAsync("PageHeader", Model.Blog.Title)
+    <header class="shrink cell grid-container app-border-bottom">
+        <h6 class="subheader margin-0 padding-vertical-1">@Model.Blog.CreatedDate.ToString("dd-MMMM-yyyy")<span class="primary label margin-left-1">@Model.Blog.Keyword</span><span class="font-italic margin-left-1">@Model.Blog.MinutesToRead&nbsp;@Resources.BlogModelResources.MinutesToRead</span></h6>
+    </header>
+    <section class="auto cell app-overflow-y-auto">
+        <article class="grid-container">
+            @Html.Raw(Model.Blog.TextEntry)
+        </article>
+    </section>
+</div>
 

@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EnaBricks.Generics" Version="1.0.0" />
+    <PackageReference Include="EnaBricks.WorkflowBricks" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NetBlog.Resources\NetBlog.Resources.csproj" />
   </ItemGroup>
 

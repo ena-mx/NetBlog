@@ -61,7 +61,7 @@ namespace NetBlog.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Continuar Leyendo.
+        ///   Looks up a localized string similar to Continue reading.
         /// </summary>
         public static string ContinueReading {
             get {
@@ -70,7 +70,16 @@ namespace NetBlog.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to minutos de lectura.
+        ///   Looks up a localized string similar to Blog archives.
+        /// </summary>
+        public static string HeaderTitle {
+            get {
+                return ResourceManager.GetString("HeaderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minute(s) to read.
         /// </summary>
         public static string MinutesToRead {
             get {
@@ -79,7 +88,7 @@ namespace NetBlog.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No hay registros en la pagina actual.
+        ///   Looks up a localized string similar to No records in current page.
         /// </summary>
         public static string PageWithNoItems {
             get {
@@ -88,7 +97,7 @@ namespace NetBlog.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Listado de blogs.
+        ///   Looks up a localized string similar to Blog list.
         /// </summary>
         public static string Title {
             get {
