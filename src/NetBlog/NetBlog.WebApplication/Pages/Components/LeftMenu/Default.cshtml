@@ -1,0 +1,27 @@
+﻿@model NetBlog.Queries.Menu.MenuItem[]
+<!-- Menu -->
+<ul class="vertical menu accordion-menu show-for-small-only" data-accordion-menu style="margin-top:3rem;">
+    @for (int i = 0; i < Model.Length; i++)
+    {
+        @if (Model[i].IsLocal)
+        {
+            <li>
+                <a asp-page="@Model[i].Url"><i class="@Model[i].FontAwasomeIcon" style="padding-right: 1rem;"></i>@Model[i].Description</a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@Model[i].Url"target="_blank"><i class="@Model[i].FontAwasomeIcon" style="padding-right: 1rem;"></i>@Model[i].Description</a>
+            </li>
+        }
+    }
+    @*@if (User.Identity.IsAuthenticated)
+        {
+            <li><a asp-area="" asp-controller="Account" asp-action="SignOut"><i class="fa fa-sign-out fa-lg" style="padding-right: 1rem;"></i>Cerrar Sesión</a></li>
+        }
+        else
+        {
+            <li><a asp-area="" asp-controller="Account" asp-action="Signin"><i class="fa fa-sign-out fa-lg" style="padding-right: 1rem;"></i>Iniciar Sesión</a></li>
+        }*@
+</ul>
