@@ -9,7 +9,9 @@ namespace NetBlog.WebApplication
     using NetBlog.Domain.Blogging;
     using NetBlog.Domain.Sql.Blogging;
     using NetBlog.Queries.Blogging;
+    using NetBlog.Queries.Menu;
     using NetBlog.Queries.Sql.Blogging;
+    using NetBlog.Queries.Sql.Menu;
 
     public class Startup
     {
@@ -34,6 +36,7 @@ namespace NetBlog.WebApplication
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped<BlogEntryQueryComponent, SqlBlogEntryQueryComponent>();
             services.AddSingleton<BlogConfig, SqlBlogConfig>();
+            services.AddScoped<MenuQueryComponent, SqlMenuQueryComponent>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

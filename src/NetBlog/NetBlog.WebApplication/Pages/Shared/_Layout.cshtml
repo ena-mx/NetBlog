@@ -22,7 +22,7 @@
                 <button class="close-button" aria-label="Close menu" type="button" data-close>
                     <span aria-hidden="true">&times;</span>
                 </button>
-                @await Html.PartialAsync("_Menu")
+                @await Component.InvokeAsync("LeftMenu")
             </div>
             <div class="off-canvas-content" data-off-canvas-content>
                 <!-- page content -->
