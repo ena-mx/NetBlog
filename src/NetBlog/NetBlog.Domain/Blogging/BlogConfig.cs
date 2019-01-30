@@ -5,6 +5,7 @@
 
     public class BlogConfig
     {
+        private static readonly string _blogNameKey = @"BlogName";
         private static readonly string _gitHubKey = @"GitHub";
         private static readonly string _linkedInKey = @"linkedInUrl";
         private static readonly string _profilePicKey = @"ProfilePicUrl";
@@ -14,6 +15,7 @@
 
         public virtual Task<Option<string>> GetConfigValueAsync(string blogKey) => Task.FromResult(Option<string>.None());
 
+        public async Task<Option<string>> GetBlogNameAsync() => await GetConfigValueAsync(_blogNameKey);
         public async Task<Option<string>> GetGitHubUrl() => await GetConfigValueAsync(_gitHubKey);
         public async Task<Option<string>> GetLinkedIdUrl() => await GetConfigValueAsync(_linkedInKey);
         public async Task<Option<string>> GetProfilePicUrl() => await GetConfigValueAsync(_profilePicKey);

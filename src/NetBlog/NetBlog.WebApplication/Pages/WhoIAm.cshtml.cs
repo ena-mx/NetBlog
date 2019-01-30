@@ -1,17 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace NetBlog.WebApplication.Pages
+﻿namespace NetBlog.WebApplication.Pages
 {
+    using EnaBricks.Generics;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using NetBlog.Domain.Blogging;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class WhoIAmModel : PageModel
     {
-        public void OnGet()
-        {
+        private readonly BlogConfig _blogConfig;
+        public string HtmlData { get; set; }
 
+
+        public WhoIAmModel(BlogConfig blogConfig)
+        {
+            _blogConfig = blogConfig;
+        }
+
+        public async Task<ActionResult> OnGetAsync()
+        {
+            Option<string> HtmlDataOption = await _blogConfig.GetWhoIAmHtml();
+            if (!HtmlDataOption.Any())
+                return RedirectToPage("/NotFound");
+            HtmlData = HtmlDataOption.Single();
+            return Page();
         }
     }
 }

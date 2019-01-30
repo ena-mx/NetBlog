@@ -10,7 +10,8 @@
     public sealed class SqlMenuQueryComponent : MenuQueryComponent
     {
         private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["BlogDB"].ConnectionString;
-        private readonly string _cmdTxtMenuItems = @"
+
+        private readonly string _cmdTxtLeftMenuItems = @"
             SELECT CONVERT(XML, (
 	            SELECT 
 		            [Description], 
@@ -22,13 +23,46 @@
 	            FOR XML PATH('MenuItem'), ELEMENTS, ROOT('MenuItems')
             )) AS 'XmlData'
         ";
+
+        private readonly string _cmdTxtTitlebarMenuItems = @"
+            SELECT CONVERT(XML, (
+	            SELECT 
+		            [Description], 
+		            [FontAwasomeIcon] AS 'FontAwasomeIcon', 
+		            [Url], 
+		            [IsLocal]
+	            FROM [dbo].[MenuItem] WITH(NOLOCK)
+				WHERE [MenuItem].[IsMobileMenu] = 1
+	            ORDER BY [OrderNumberMobile]
+	            FOR XML PATH('MenuItem'), ELEMENTS, ROOT('MenuItems')
+            )) AS 'XmlData'
+        ";
         private readonly string _rootName = "MenuItems";
 
-        public override async Task<MenuItem[]> GetMenuItems()
+        public override async Task<MenuItem[]> GetLeftMenuItemsAsync()
         {
             using (SqlDeserializerComponent<MenuItem[]> component = new SqlDeserializerComponent<MenuItem[]>(
                _connectionString,
-               _cmdTxtMenuItems,
+               _cmdTxtLeftMenuItems,
+               _rootName,
+               Array.Empty<SqlParameter>()))
+            {
+                try
+                {
+                    return await component.ExecuteCmdTextAndDeserialize() ?? Array.Empty<MenuItem>();
+                }
+                catch (InvalidOperationException)
+                {
+                    return Array.Empty<MenuItem>();
+                }
+            }
+        }
+
+        public override async Task<MenuItem[]> GetTitlebarMenuItemsAsync()
+        {
+            using (SqlDeserializerComponent<MenuItem[]> component = new SqlDeserializerComponent<MenuItem[]>(
+               _connectionString,
+               _cmdTxtTitlebarMenuItems,
                _rootName,
                Array.Empty<SqlParameter>()))
             {
