@@ -15,7 +15,7 @@
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            MenuItem[] menuItems = await _menuQueryComponent.GetMenuItems();
+            MenuItem[] menuItems = await _menuQueryComponent.GetLeftMenuItemsAsync();
             return View(menuItems);
         }
     }

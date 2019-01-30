@@ -1,8 +1,10 @@
 ﻿@page
 @model NetBlog.WebApplication.Pages.WhoIAmModel
 @{
-    ViewData["Title"] = "WhoIAm";
+    ViewData["Title"] = "Who I Am";
 }
 
-<h1>WhoIAm</h1>
-
+<div class="auto cell">
+    @await Component.InvokeAsync("PageHeader", "Elias Navarro Profile")
+    @Html.Raw(Model.HtmlData)
+</div>

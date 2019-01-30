@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Connector</title>
+    <title>@ViewData["Title"] - Blog</title>
     <link rel="stylesheet" href="~/foundation/css/foundation-prototype.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/font-awesome/css/font-awesome.min.css" asp-append-version="true" />
     <environment include="Development">
@@ -28,7 +28,7 @@
                 <!-- page content -->
                 <div class="grid-y grid-frame">
                     <div class="shrink cell">
-                        @await Html.PartialAsync("_TitleBar")
+                        @await  Component.InvokeAsync("TitlebarMenu")
                     </div>
                     <div class="auto cell grid-x">
                         @RenderBody()
