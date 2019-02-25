@@ -3,12 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>ca42e071-b4d4-4d7e-bdcd-309338dcbbb6</UserSecretsId>
   </PropertyGroup>
 
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
   </ItemGroup>

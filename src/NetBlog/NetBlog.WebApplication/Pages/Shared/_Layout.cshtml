@@ -28,7 +28,7 @@
                 <!-- page content -->
                 <div class="grid-y grid-frame">
                     <div class="shrink cell">
-                        @await  Component.InvokeAsync("TitlebarMenu")
+                        @await Component.InvokeAsync("TitlebarMenu")
                     </div>
                     <div class="auto cell grid-x">
                         @RenderBody()
@@ -40,6 +40,7 @@
             </div>
         </div>
     </div>
+    @await Html.PartialAsync("_Modal")
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/what-input/what-input.min.js" asp-append-version="true"></script>
     <script src="~/foundation/js/foundation.min.js" asp-append-version="true"></script>

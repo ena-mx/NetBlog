@@ -8,4 +8,8 @@
     <PackageReference Include="EnaBricks.Generics" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NetBlog.Requests\NetBlog.Requests.csproj" />
+  </ItemGroup>
+
 </Project>

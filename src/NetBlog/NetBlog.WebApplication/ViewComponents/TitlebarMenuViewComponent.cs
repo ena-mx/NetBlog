@@ -1,13 +1,13 @@
 ﻿namespace NetBlog.WebApplication.ViewComponents
 {
+    using EnaBricks.Generics;
     using Microsoft.AspNetCore.Mvc;
-    using NetBlog.Domain.Blogging;
+    using NetBlog.Domain.Blogging.Component;
     using NetBlog.Queries.Menu;
     using System;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using System.Linq;
-    using EnaBricks.Generics;
+    using System.Threading.Tasks;
 
     public class TitlebarMenuViewComponent : ViewComponent
     {

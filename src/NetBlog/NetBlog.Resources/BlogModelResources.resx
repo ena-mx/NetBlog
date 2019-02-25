@@ -117,8 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddUpdateBlogEntry_Entry" xml:space="preserve">
+    <value>Entry(Html)</value>
+  </data>
+  <data name="AddUpdateBlogEntry_Keyword" xml:space="preserve">
+    <value>Keyword</value>
+  </data>
+  <data name="AddUpdateBlogEntry_MinutesToRead" xml:space="preserve">
+    <value>Minutes to read</value>
+  </data>
+  <data name="AddUpdateBlogEntry_TextIntro" xml:space="preserve">
+    <value>Intro</value>
+  </data>
+  <data name="AddUpdateBlogEntry_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="AddUpdateBlogEntry_UriKey" xml:space="preserve">
+    <value>Uri</value>
+  </data>
+  <data name="BackToBlogList" xml:space="preserve">
+    <value>Volver a listado</value>
+  </data>
+  <data name="BlogEntryAddPageHeading" xml:space="preserve">
+    <value>Create new blog entry</value>
+  </data>
+  <data name="BlogEntryErrorsTitle" xml:space="preserve">
+    <value>There are some errors saving the blog entry</value>
+  </data>
+  <data name="BlogEntryUpdatePageHeading" xml:space="preserve">
+    <value>Update Blog entry</value>
+  </data>
+  <data name="BlogIndex_AddBlogLabel" xml:space="preserve">
+    <value>Create new blog</value>
+  </data>
+  <data name="BlogState_InvalidStateError" xml:space="preserve">
+    <value>The operation is invalied due to the blog´s state</value>
+  </data>
+  <data name="BlogState_StorageError" xml:space="preserve">
+    <value>Database error savin the info, please contact support</value>
+  </data>
+  <data name="BlogState_UriKeyDuplicateError" xml:space="preserve">
+    <value>There is an existing blog entry with the same uri</value>
+  </data>
   <data name="ContinueReading" xml:space="preserve">
     <value>Continue reading</value>
+  </data>
+  <data name="EditBlogLabel" xml:space="preserve">
+    <value>Edit blog</value>
   </data>
   <data name="HeaderTitle" xml:space="preserve">
     <value>Blog archives</value>

@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NetBlog.Resources\NetBlog.Resources.csproj" />
+    <ProjectReference Include="..\NetBlog.SharedFramework\NetBlog.SharedFramework.csproj" />
   </ItemGroup>
 
 </Project>

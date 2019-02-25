@@ -6,5 +6,6 @@
         public string FontAwasomeIcon { get; set; }
         public string Url { get; set; }
         public bool IsLocal { get; set; }
+        public bool IsSecured { get; set; }
     }
 }

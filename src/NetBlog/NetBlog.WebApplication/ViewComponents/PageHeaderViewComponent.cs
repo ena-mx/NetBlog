@@ -1,7 +1,7 @@
 ﻿namespace NetBlog.WebApplication.ViewComponents
 {
     using Microsoft.AspNetCore.Mvc;
-    using NetBlog.Domain.Blogging;
+    using NetBlog.Domain.Blogging.Component;
     using NetBlog.Queries.Blogging;
     using System.Linq;
     using System.Threading.Tasks;
