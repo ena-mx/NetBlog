@@ -12,14 +12,22 @@
     {
         <div class="auto cell grid-y app-overflow-y-auto">
             <div class="auto cell grid-container">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div><h2><a asp-page="/BlogAdmin/Add">@Resources.BlogModelResources.BlogIndex_AddBlogLabel</a></h2></div>
+                }
                 <ul class="no-bullet">
                     @for (int i = 0; i < Model.BlogModel.Blogs.Items.Length; i++)
                     {
                         <li class="padding-vertical-1">
-                            <h3><a asp-page="/Blog/Archives" asp-route-id="@Model.BlogModel.Blogs.Items[i].UriKey">@Model.BlogModel.Blogs.Items[i].Title</a></h3>
+                            <h3><a data-apploader asp-page="/Blog/Archives" asp-route-id="@Model.BlogModel.Blogs.Items[i].UriKey">@Model.BlogModel.Blogs.Items[i].Title</a></h3>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <h4><a data-apploader asp-page="/BlogAdmin/Edit" asp-route-id="@Model.BlogModel.Blogs.Items[i].UriKey">@Resources.BlogModelResources.EditBlogLabel</a></h4>
+                            }
                             <h6 class="subheader margin-0">@Model.BlogModel.Blogs.Items[i].CreatedDate.ToString("dd-MMMM-yyyy")<span class="primary label margin-left-1">@Model.BlogModel.Blogs.Items[i].Keyword</span><span class="font-italic margin-left-1">@Model.BlogModel.Blogs.Items[i].MinutesToRead&nbsp;@Resources.BlogModelResources.MinutesToRead</span></h6>
                             <p class="margin-0">@Model.BlogModel.Blogs.Items[i].TextIntro</p>
-                            <a asp-page="/Blog/Archives" asp-route-id="@Model.BlogModel.Blogs.Items[i].UriKey">@Resources.BlogModelResources.ContinueReading</a>
+                            <a data-apploader asp-page="/Blog/Archives" asp-route-id="@Model.BlogModel.Blogs.Items[i].UriKey">@Resources.BlogModelResources.ContinueReading</a>
                         </li>
                     }
                 </ul>
@@ -38,7 +46,7 @@
 </div>
 
 @section Scripts
-{
+    {
     <environment include="Development">
         <script src="~/js/gridSelectChange.js" asp-append-version="true"></script>
     </environment>

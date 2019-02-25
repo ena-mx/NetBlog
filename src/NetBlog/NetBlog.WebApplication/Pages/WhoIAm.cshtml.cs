@@ -1,12 +1,14 @@
 ﻿namespace NetBlog.WebApplication.Pages
 {
     using EnaBricks.Generics;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
-    using NetBlog.Domain.Blogging;
+    using NetBlog.Domain.Blogging.Component;
     using System.Linq;
     using System.Threading.Tasks;
 
+    [AllowAnonymous]
     public class WhoIAmModel : PageModel
     {
         private readonly BlogConfig _blogConfig;

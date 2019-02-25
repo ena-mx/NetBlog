@@ -1,0 +1,84 @@
+﻿@page "{id}"
+@model NetBlog.WebApplication.Pages.BlogAdmin.EditModel
+@{
+    ViewData["Title"] = Model.BlogEntryUpdateRequest.Title;
+}
+
+@if (!ModelState.IsValid)
+{
+    <div class="callout small alert position-fixed-top" data-closable>
+        <button class="close-button" aria-label="Close menu" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h6 class="font-bold app-text-error" style="color: #cc4b37;">@Resources.BlogModelResources.BlogEntryErrorsTitle</h6>
+        <div asp-validation-summary="ModelOnly"></div>
+    </div>
+}
+
+<form class="auto cell grid-y" method="post">
+    <div class="shrink cell padding-horizontal-1 padding-top-1 app-border-bottom">
+        <h1>@Resources.BlogModelResources.BlogEntryUpdatePageHeading</h1>
+    </div>
+    <div class="auto cell grid-y app-overflow-y-auto padding-horizontal-1 padding-top-1 app-border-bottom">
+        <div class="shrink cell grid-x">
+            <div class="small-12 medium-auto cell">
+                <label asp-for="BlogEntryUpdateRequest.Title"></label>
+                <input type="text" class="form-control" asp-for="BlogEntryUpdateRequest.Title" placeholder="@Resources.BlogModelResources.AddUpdateBlogEntry_Title" autocomplete="off" />
+                <span asp-validation-for="BlogEntryUpdateRequest.Title"></span>
+            </div>
+            <div class="small-12 medium-auto margin-horizontal-1">
+                <label asp-for="BlogEntryUpdateRequest.UriKey"></label>
+                <input type="text" asp-for="BlogEntryUpdateRequest.UriKey" placeholder="@Resources.BlogModelResources.AddUpdateBlogEntry_UriKey" autocomplete="off" />
+                <span asp-validation-for="BlogEntryUpdateRequest.UriKey"></span>
+            </div>
+            <div class="small-12 medium-auto">
+                <label asp-for="BlogEntryUpdateRequest.MinutesToRead"></label>
+                <input type="number" asp-for="BlogEntryUpdateRequest.MinutesToRead" placeholder="@Resources.BlogModelResources.AddUpdateBlogEntry_MinutesToRead" autocomplete="off" />
+                <span asp-validation-for="BlogEntryUpdateRequest.MinutesToRead"></span>
+            </div>
+        </div>
+        <div class="shrink cell">
+            <label asp-for="BlogEntryUpdateRequest.TextIntro"></label>
+            <textarea asp-for="BlogEntryUpdateRequest.TextIntro" placeholder="@Resources.BlogModelResources.AddUpdateBlogEntry_TextIntro" style="height: 200px;"></textarea>
+            <span asp-validation-for="BlogEntryUpdateRequest.TextIntro"></span>
+        </div>
+        <div class="shrink cell">
+            <label asp-for="BlogEntryUpdateRequest.TextEntry"></label>
+            <textarea asp-for="BlogEntryUpdateRequest.TextEntry" placeholder="@Resources.BlogModelResources.AddUpdateBlogEntry_Entry" style="height: 200px;"></textarea>
+            <span asp-validation-for="BlogEntryUpdateRequest.TextEntry"></span>
+        </div>
+        <div class="shrink cell">
+            <label asp-for="BlogEntryUpdateRequest.KeyWordId"></label>
+            <div class="grid-y">
+                @if (Model.BlogEntryUpdateRequest.KeyWordId == 1)
+                {
+                    <div><input type="radio" asp-for="BlogEntryUpdateRequest.KeyWordId" value="1" checked="checked" /><span>dotnetcore</span></div>
+                }
+                else
+                {
+                    <div><input type="radio" asp-for="BlogEntryUpdateRequest.KeyWordId" value="1" /><span>dotnetcore</span></div>
+                }
+
+
+                @if (Model.BlogEntryUpdateRequest.KeyWordId == 2)
+                {
+                    <div><input type="radio" asp-for="BlogEntryUpdateRequest.KeyWordId" value="2" checked="checked" /><span>blogging</span></div>
+                }
+                else
+                {
+                    <div><input type="radio" asp-for="BlogEntryUpdateRequest.KeyWordId" value="2" /><span>blogging</span></div>
+                }
+
+            </div>
+            
+        </div>
+    </div>
+    <div class="shrink cell grid-x align-right padding-horizontal-1 padding-top-1">
+        <div class="padding-right-1"><a class="button" asp-page="/Blog/Index">@Resources.BlogModelResources.BackToBlogList</a></div>
+        <div><input type="submit" class="button" value="Save" /></div>
+    </div>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

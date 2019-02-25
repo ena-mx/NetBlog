@@ -1,4 +1,4 @@
-﻿namespace NetBlog.Domain.Blogging
+﻿namespace NetBlog.Domain.Blogging.Component
 {
     using EnaBricks.Generics;
     using System.Threading.Tasks;

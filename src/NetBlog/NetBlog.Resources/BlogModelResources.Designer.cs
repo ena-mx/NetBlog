@@ -61,11 +61,146 @@ namespace NetBlog.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Entry(Html).
+        /// </summary>
+        public static string AddUpdateBlogEntry_Entry {
+            get {
+                return ResourceManager.GetString("AddUpdateBlogEntry_Entry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyword.
+        /// </summary>
+        public static string AddUpdateBlogEntry_Keyword {
+            get {
+                return ResourceManager.GetString("AddUpdateBlogEntry_Keyword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minutes to read.
+        /// </summary>
+        public static string AddUpdateBlogEntry_MinutesToRead {
+            get {
+                return ResourceManager.GetString("AddUpdateBlogEntry_MinutesToRead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intro.
+        /// </summary>
+        public static string AddUpdateBlogEntry_TextIntro {
+            get {
+                return ResourceManager.GetString("AddUpdateBlogEntry_TextIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string AddUpdateBlogEntry_Title {
+            get {
+                return ResourceManager.GetString("AddUpdateBlogEntry_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uri.
+        /// </summary>
+        public static string AddUpdateBlogEntry_UriKey {
+            get {
+                return ResourceManager.GetString("AddUpdateBlogEntry_UriKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volver a listado.
+        /// </summary>
+        public static string BackToBlogList {
+            get {
+                return ResourceManager.GetString("BackToBlogList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new blog entry.
+        /// </summary>
+        public static string BlogEntryAddPageHeading {
+            get {
+                return ResourceManager.GetString("BlogEntryAddPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are some errors saving the blog entry.
+        /// </summary>
+        public static string BlogEntryErrorsTitle {
+            get {
+                return ResourceManager.GetString("BlogEntryErrorsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Blog entry.
+        /// </summary>
+        public static string BlogEntryUpdatePageHeading {
+            get {
+                return ResourceManager.GetString("BlogEntryUpdatePageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new blog.
+        /// </summary>
+        public static string BlogIndex_AddBlogLabel {
+            get {
+                return ResourceManager.GetString("BlogIndex_AddBlogLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The operation is invalied due to the blog´s state.
+        /// </summary>
+        public static string BlogState_InvalidStateError {
+            get {
+                return ResourceManager.GetString("BlogState_InvalidStateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database error savin the info, please contact support.
+        /// </summary>
+        public static string BlogState_StorageError {
+            get {
+                return ResourceManager.GetString("BlogState_StorageError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is an existing blog entry with the same uri.
+        /// </summary>
+        public static string BlogState_UriKeyDuplicateError {
+            get {
+                return ResourceManager.GetString("BlogState_UriKeyDuplicateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue reading.
         /// </summary>
         public static string ContinueReading {
             get {
                 return ResourceManager.GetString("ContinueReading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit blog.
+        /// </summary>
+        public static string EditBlogLabel {
+            get {
+                return ResourceManager.GetString("EditBlogLabel", resourceCulture);
             }
         }
         

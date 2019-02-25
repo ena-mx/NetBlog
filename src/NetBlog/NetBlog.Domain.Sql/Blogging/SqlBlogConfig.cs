@@ -1,9 +1,8 @@
 ﻿namespace NetBlog.Domain.Sql.Blogging
 {
     using EnaBricks.Generics;
-    using NetBlog.Domain.Blogging;
+    using NetBlog.Domain.Blogging.Component;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
     using System.Configuration;
     using System.Data.SqlClient;
     using System.Threading.Tasks;

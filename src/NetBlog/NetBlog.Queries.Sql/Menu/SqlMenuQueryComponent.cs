@@ -17,9 +17,11 @@
 		            [Description], 
 		            [FontAwasomeIcon], 
 		            [Url], 
-		            [IsLocal]
+		            [IsLocal],
+                    [IsSecured]
 	            FROM [dbo].[MenuItem] WITH(NOLOCK)
-	            ORDER BY [OrderNumber]
+				WHERE [IsMobileMenu] = 1
+	            ORDER BY [OrderNumberMobile]
 	            FOR XML PATH('MenuItem'), ELEMENTS, ROOT('MenuItems')
             )) AS 'XmlData'
         ";
@@ -30,10 +32,11 @@
 		            [Description], 
 		            [FontAwasomeIcon] AS 'FontAwasomeIcon', 
 		            [Url], 
-		            [IsLocal]
+		            [IsLocal],
+                    [IsSecured]
 	            FROM [dbo].[MenuItem] WITH(NOLOCK)
-				WHERE [MenuItem].[IsMobileMenu] = 1
-	            ORDER BY [OrderNumberMobile]
+				WHERE [MenuItem].[IsTitleBar] = 1
+	            ORDER BY [OrderNumber]
 	            FOR XML PATH('MenuItem'), ELEMENTS, ROOT('MenuItems')
             )) AS 'XmlData'
         ";

@@ -1,13 +1,18 @@
 namespace NetBlog.WebApplication
 {
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authentication.AzureAD.UI;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Authorization;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using NetBlog.Domain.Blogging;
+    using NetBlog.Domain.Blogging.Component;
     using NetBlog.Domain.Sql.Blogging;
+    using NetBlog.Domain.Sql.Blogging.Component;
     using NetBlog.Queries.Blogging;
     using NetBlog.Queries.Menu;
     using NetBlog.Queries.Sql.Blogging;
@@ -32,11 +37,25 @@ namespace NetBlog.WebApplication
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
+                .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            }).AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AllowAnonymousToFolder("/Account");
+                options.Conventions.AllowAnonymousToFolder("/Blog");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.AddScoped<BlogEntryQueryComponent, SqlBlogEntryQueryComponent>();
             services.AddSingleton<BlogConfig, SqlBlogConfig>();
             services.AddScoped<MenuQueryComponent, SqlMenuQueryComponent>();
+            services.AddScoped<BlogEntryComponentFactory, SqlBlogEntryComponentFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +75,8 @@ namespace NetBlog.WebApplication
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
 
             app.UseMvc();
         }
